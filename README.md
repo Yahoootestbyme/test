@@ -1,8 +1,13 @@
+This vulnerability arises when a WildFly application server is exposed with its default web interface or welcome page still accessible in a production environment. The default page typically includes version information and references to documentation, management consoles, and sample applications.
 
-CVE-2025-6493
-Regular Expression Denial of Service (ReDoS)
-Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) via multiple locations in markdown.js. An attacker can cause excessive resource consumption by submitting a crafted Markdown input that triggers inefficient regular expression processing, causing the editor (or associated service) to freeze the CPU.
+During the assessment, the test team accessed the application server  and observed that the WildFly default home page was displayed. The page contained WildFly branding and links to documentation and server management resources.
+
+Information Disclosure: The WildFly default page may reveal server version, deployment details, and technology stack information, helping attackers craft targeted attacks.
+Security Misconfiguration Indicator: Publicly accessible default pages suggest a lack of proper server hardening and may imply that management interfaces (such as the WildFly Admin Console or JMX interfaces) are also exposed.
 
 
-CVE-2020-7760
+Remove or restrict access to the default WildFly welcome page (welcome-content) in the server configuration.
 
+Restrict Access to Admin Interfaces: Ensure management consoles (e.g., /console, /management) are not accessible from untrusted networks and are protected by strong authentication.
+
+Harden Server Configuration: Follow WildFly hardening best practices to disable unused features, limit port exposure, and secure default deployments.
