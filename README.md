@@ -1,13 +1,10 @@
-This vulnerability arises when a WildFly application server is exposed with its default web interface or welcome page still accessible in a production environment. The default page typically includes version information and references to documentation, management consoles, and sample applications.
+This vulnerability arises when cookies are set without the Secure and/or HttpOnly attributes. These flags are essential for protecting cookies from being exposed to unintended parties, especially in the context of web applications handling authentication, session management, or sensitive data.
 
-During the assessment, the test team accessed the application server  and observed that the WildFly default home page was displayed. The page contained WildFly branding and links to documentation and server management resources.
+During the assessment, the test team observed that session cookies set by the application were missing the Secure and HttpOnly attributes. This was identified by reviewing the Set-Cookie headers in HTTP responses and browser developer tools during authenticated sessions.
 
-Information Disclosure: The WildFly default page may reveal server version, deployment details, and technology stack information, helping attackers craft targeted attacks.
-Security Misconfiguration Indicator: Publicly accessible default pages suggest a lack of proper server hardening and may imply that management interfaces (such as the WildFly Admin Console or JMX interfaces) are also exposed.
+Cookies without the Secure attribute can be sent over unencrypted HTTP, making them vulnerable to interception via man-in-the-middle (MITM) attacks.
+Without the HttpOnly flag, cookies can be accessed and exfiltrated by malicious JavaScript injected through XSS vulnerabilities.
 
-
-Remove or restrict access to the default WildFly welcome page (welcome-content) in the server configuration.
-
-Restrict Access to Admin Interfaces: Ensure management consoles (e.g., /console, /management) are not accessible from untrusted networks and are protected by strong authentication.
-
-Harden Server Configuration: Follow WildFly hardening best practices to disable unused features, limit port exposure, and secure default deployments.
+Ensure all cookies containing sensitive data (e.g., session identifiers) are flagged with Secure to restrict their transmission to HTTPS connections only
+Prevent client-side scripts from accessing cookies by using the HttpOnly flag.
+Add the SameSite=Strict or SameSite=Lax attribute to help prevent cross-site request forgery (CSRF) attacks
