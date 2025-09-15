@@ -1,20 +1,8 @@
-This vulnerability arises when an application or system component is left configured with default credentials that are commonly known and publicly documented. These credentials are typically provided by vendors for initial setup and are expected to be changed before deployment. However, if they remain unchanged in a production environment, they can be easily exploited by malicious actors to gain unauthorized access.
 
-During the assessment, the test team observed that the application was accessible using default administrative credentials.
-
-Gain administrative access without needing to exploit other vulnerabilities.
-
-Modify configurations, access sensitive data, or disrupt system operations.
-
-Use the access to plant backdoors, elevate privileges, or pivot to other systems.
-
-Combine this with other vulnerabilities (e.g., internal IP disclosure, open ports) to carry out lateral movement or broader compromise.
+CVE-2025-6493
+Regular Expression Denial of Service (ReDoS)
+Affected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS) via multiple locations in markdown.js. An attacker can cause excessive resource consumption by submitting a crafted Markdown input that triggers inefficient regular expression processing, causing the editor (or associated service) to freeze the CPU.
 
 
+CVE-2020-7760
 
-
-Immediately change all default usernames and passwords to strong, unique credentials.
-
-Enforce password complexity and rotation policies for all administrative and privileged accounts.
-
-Disable or remove any unused default accounts if they are not required.
