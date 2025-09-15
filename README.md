@@ -1,10 +1,15 @@
-This vulnerability arises when cookies are set without the Secure and/or HttpOnly attributes. These flags are essential for protecting cookies from being exposed to unintended parties, especially in the context of web applications handling authentication, session management, or sensitive data.
+This vulnerability arises when an application does not enforce an account lockout mechanism after repeated failed login attempts. A lack of such a policy allows attackers to perform brute-force attacks—systematically guessing usernames and passwords until they succeed—without any rate-limiting or blocking mechanisms in place.
 
-During the assessment, the test team observed that session cookies set by the application were missing the Secure and HttpOnly attributes. This was identified by reviewing the Set-Cookie headers in HTTP responses and browser developer tools during authenticated sessions.
+During the assessment, the test team conducted multiple consecutive failed login attempts using incorrect credentials at the application’s login page. It was observed that:
+The application allowed unlimited login attempts without any temporary lockout, CAPTCHA, or delay mechanism.
+No warning or rate-limiting response was triggered even after 20+ failed attempts for the same user account.
 
-Cookies without the Secure attribute can be sent over unencrypted HTTP, making them vulnerable to interception via man-in-the-middle (MITM) attacks.
-Without the HttpOnly flag, cookies can be accessed and exfiltrated by malicious JavaScript injected through XSS vulnerabilities.
 
-Ensure all cookies containing sensitive data (e.g., session identifiers) are flagged with Secure to restrict their transmission to HTTPS connections only
-Prevent client-side scripts from accessing cookies by using the HttpOnly flag.
-Add the SameSite=Strict or SameSite=Lax attribute to help prevent cross-site request forgery (CSRF) attacks
+Attackers can exploit this weakness to perform credential-stuffing attacks using automated tools,Especially critical if users have weak or reused passwords
+Lack of lockout or delay enables continuous, high-speed attempts to guess credentials.
+
+
+Lock the account temporarily after a defined number of failed login attempts (e.g., 5 attempts).
+Present CAPTCHA challenges after a few failed attempts to differentiate between humans and bots.
+Enforce strong password policies.
+Enable multi-factor authentication (MFA) to reduce reliance on password security alone.
