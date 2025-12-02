@@ -1,10 +1,11 @@
-This vulnerability occurs when sensitive information such as API keys, tokens, or login credentials is hardcoded directly into JavaScript files. Since JavaScript is client-side and fully accessible through browser developer tools, any credentials embedded within the code become visible to all users, resulting in exposure of sensitive system access details.
+This vulnerability occurs when sensitive information—such as usernames, session tokens, authentication credentials, or API keys—is passed through URL query parameters. Since URLs are logged by browsers, servers, proxies, and third-party tools, any credential placed in the URL becomes exposed and can be retrieved by unauthorized parties. This indicates improper handling of sensitive data during authentication or API communication.
 
-During the assessment, the test team inspected the application’s JavaScript files using the browser’s developer tools. It was observed that the file <filename.js> contained hardcoded credentials in plain text. By simply opening the Sources tab, the credentials were readable without any authentication or restriction.
+During the assessment, the test team observed that the application transmitted credentials as part of the URL during the login or authentication flow. By monitoring the browser address bar and network requests, it was noted that sensitive values such as <username / token / password> appeared directly within the URL, making them visible in browser history, server logs, and intermediary systems.
 
-Attackers can leverage these exposed credentials to gain unauthorized access to backend APIs or services. This may lead to data leakage, service misuse, account compromise, or further escalation of attacks, especially if the exposed key or password has high privileges or broad access rights.
+Attackers can exploit this weakness by harvesting credentials from browser history, shoulder surfing, proxy logs, or intercepted traffic. This increases the risk of unauthorized access, session hijacking, account compromise, and long-term credential leakage across multiple logging systems.
 
-Remove all hardcoded credentials from JavaScript files and migrate them to secure server-side storage.
-Regenerate and rotate the exposed credentials immediately.
-Use environment variables, secure vaults, or encrypted configuration systems for secret management.
-Implement automated scanning tools to detect hardcoded secrets during development.
+Avoid sending any sensitive information through URL query parameters.
+Use secure POST requests or encrypted request bodies for credential transmission.
+Mask or tokenize sensitive values before transmission.
+Review and sanitize application logs to remove any previously recorded credentials.
+Implement secure authentication flows that properly protect all sensitive data.
