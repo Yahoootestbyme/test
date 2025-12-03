@@ -9,3 +9,7 @@ Use secure POST requests or encrypted request bodies for credential transmission
 Mask or tokenize sensitive values before transmission.
 Review and sanitize application logs to remove any previously recorded credentials.
 Implement secure authentication flows that properly protect all sensitive data.
+
+Date and BAC: https://test.com/fe/index.html#/parametrizzazioni/homebanking/messaggi-personalizzati
+Emial: https://testst/esb/sendMail
+https://test.com/fe/index.html#/pratica/liquidazione/pratiche-deliberate
